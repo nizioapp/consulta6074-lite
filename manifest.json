@@ -1,0 +1,26 @@
+{
+  "name": "Consulta 6074 Lite",
+  "short_name": "6074 Lite",
+  "description": "Consulta rápida de códigos de infração, fatos geradores e sugestão de observação.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f6f4",
+  "theme_color": "#0b3d2e",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

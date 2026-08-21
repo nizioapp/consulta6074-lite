@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b3d2e">
+<title>Consulta 6074 Lite v0.8.1 BETA</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div><h1>Consulta 6074 Lite</h1><p>Consulta rápida de infrações e fatos geradores</p></div>
+  <span class="badge">v0.8.1 BETA • nova tabela</span>
+</header>
+
+<main>
+<section class="card">
+  <h2>Pesquisar</h2>
+  <div class="searchRow">
+    <input id="q" class="search" placeholder="Ex.: ext, extintor, tacógrafo, 608, 611.12...">
+    <button id="novaPesquisaLimpar" class="light">Nova pesquisa / limpar</button>
+  </div>
+  <p class="hint">A pesquisa encontra código, palavra inteira ou parte da palavra, inclusive dentro dos fatos geradores e da observação-base.</p>
+  <div id="resultadosCodigos"></div>
+</section>
+
+<section id="codigoAtivoCard" class="card hidden">
+  <div class="row">
+    <div>
+      <h2>Código da Infração <span id="codigoAtivo"></span></h2>
+      <div id="descricaoCodigo"></div>
+      <div id="medidasCodigo" class="tags"></div>
+    </div>
+    <button id="limparSelecao" class="light">Limpar fatos selecionados</button>
+  </div>
+  <h3>Fatos geradores</h3>
+  <div id="fatosCodigo"></div>
+</section>
+
+<section id="observacaoCard" class="card hidden">
+  <div class="row"><h2>Observação sugerida</h2><div class="buttons"><button id="gerarObs">Gerar observação</button><button id="atualizarObs" class="light">Atualizar observação</button></div></div>
+  <textarea id="obs" rows="9" readonly></textarea>
+  <div class="buttons">
+    <button id="editarObs" class="light">Editar sugestão</button>
+    
+    <button id="copiarObs">Copiar observação</button>
+  </div>
+</section>
+
+<section class="card">
+<details>
+  <summary>Atualização da base</summary>
+  <p class="hint">A base desta versão foi criada a partir da nova planilha enviada. Já é possível importar uma base JSON nova; depois ligaremos a atualização ao Google Drive.</p>
+  <div class="buttons">
+    <label class="fileBtn">Importar base JSON<input id="importarBase" type="file" accept=".json"></label>
+    <button id="restaurarBase" class="light">Restaurar base desta versão</button>
+  </div>
+  <div id="statusBase" class="small"></div>
+</details>
+</section>
+
+<section class="card betaBox">
+  <h2>Versão de teste coletivo</h2>
+  <p class="hint">Esta versão é para testes. Anote o código pesquisado e o que aconteceu quando encontrar algum resultado incorreto.</p>
+  <div class="buttons">
+    <button id="verificarApp" class="light">Verificar atualização do aplicativo</button>
+    <button id="recarregarApp" class="light">Recarregar</button>
+  </div>
+  <div id="statusApp" class="small">VERSÃO DO APP: 0.8.1 BETA</div>
+</section>
+
+</main>
+
+<dialog id="trocaCodigo">
+  <h2>Trocar Código da Infração?</h2>
+  <p id="textoTroca"></p>
+  <div class="buttons"><button id="cancelarTroca" class="light">Cancelar</button><button id="confirmarTroca">Descartar e continuar</button></div>
+</dialog>
+
+<footer>Consulta 6074 Lite • v0.8.1 BETA • funcionamento offline</footer>
+<script src="app.js"></script>
+</body>
+</html>

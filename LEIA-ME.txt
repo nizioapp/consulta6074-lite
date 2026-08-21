@@ -1,0 +1,13 @@
+CONSULTA 6074 LITE — v0.8
+
+Alterações nos fatos 999:
+- 999.3: ORIGEM, DESTINO, Nº DE PASSAGEIROS PAGANTES e VALOR agora são campos de dados, não circunstâncias.
+- 999.1 e 999.2 também receberam formulários próprios para os dados que alimentam a observação.
+- Nova redação padrão:
+  "SEM AUTORIZAÇÃO OU PERMISSÃO DA ANTT PARA COMERCIALIZAR OU PRESTAR ESSE TIPO DE SERVIÇO."
+- A observação do 999.3 foi reescrita para "TRANSPORTE REMUNERADO INTERESTADUAL..." e usa os dados preenchidos.
+- Mantida caixa alta.
+
+Teste:
+python -m http.server 8107
+Abra http://localhost:8107

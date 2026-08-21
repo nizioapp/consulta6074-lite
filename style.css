@@ -1,0 +1,26 @@
+
+*{box-sizing:border-box}body{margin:0;background:#f3f6f4;color:#17211d;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+header{background:#0b3d2e;color:#fff;padding:13px 15px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+header h1{margin:0;font-size:1.15rem}header p{margin:2px 0 0;font-size:.8rem;opacity:.82}
+main{max-width:980px;margin:auto;padding:10px}.card{background:white;border:1px solid #d5ded9;border-radius:12px;padding:13px;margin-bottom:10px}
+h2{font-size:1.05rem;margin:0 0 9px}h3{font-size:.94rem;margin:14px 0 7px}.hidden{display:none!important}
+.row,.buttons,.searchRow{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.searchRow .search{flex:1;min-width:220px}
+input,textarea{font:inherit;border:1px solid #aebbb4;border-radius:9px;padding:10px;width:100%}.search{font-size:1.03rem}textarea{resize:vertical}
+button,.fileBtn{font:inherit;font-weight:700;border:0;border-radius:9px;padding:9px 12px;background:#116149;color:white;cursor:pointer}.light,.fileBtn{background:#e7efeb;color:#23453a}.fileBtn input{display:none}
+.badge{background:#ffffff20;border:1px solid #ffffff45;border-radius:999px;padding:5px 8px;font-size:.75rem}.hint,.small,.meta{font-size:.78rem;color:#5d6963}
+.codigoCard,.fato{border:1px solid #d8dfdb;border-radius:10px;padding:10px;margin-top:8px}.codigoCard{cursor:pointer}.codigoCard:hover{background:#f5faf7}.codigoCard b{font-size:1rem}
+.fato.selecionado{border:2px solid #1b765b;background:#f4fbf8}.factHead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}.tag{font-size:.7rem;background:#fff0d6;border:1px solid #efd197;color:#6d4a00;border-radius:999px;padding:4px 7px}
+.spec{margin-top:9px;border-top:1px dashed #d6ddd9;padding-top:9px}.choices{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.choice{display:inline-flex;align-items:center;gap:5px;border:1px solid #d6ded9;border-radius:999px;padding:5px 8px;background:white;font-size:.78rem}.choice input{width:auto}
+.fieldBox{margin-top:7px;background:#f8faf9;border:1px solid #e0e6e2;border-radius:8px;padding:8px}.fieldBox label{font-size:.78rem;font-weight:700}.fieldBox input{margin-top:4px}
+.preview{font-size:.78rem;color:#375249;background:#edf6f2;border-radius:8px;padding:7px;margin-top:8px}
+summary{font-weight:800;cursor:pointer}dialog{width:min(92vw,520px);border:0;border-radius:14px;padding:16px;box-shadow:0 15px 50px #0005}dialog::backdrop{background:#0008}
+footer{text-align:center;padding:15px;font-size:.73rem;color:#68766e}
+@media(max-width:620px){main{padding:7px}.buttons,.searchRow{align-items:stretch}.buttons button,.fileBtn{flex:1;text-align:center}}
+
+/* v0.7: conteúdo operacional/normativo em caixa alta */
+.codigoCard, .fato, #descricaoCodigo, #obs, .preview, .choice, .fieldBox label {
+  text-transform: uppercase;
+}
+
+.betaBox{border-style:dashed}

@@ -1,0 +1,35 @@
+CONSULTA 6074 LITE — BETA 0.8.1
+
+Esta é a versão para teste por um grupo pequeno de fiscais.
+
+INSTALAÇÃO
+O PWA deve ser publicado em um endereço HTTPS.
+Depois disso, todos usam o MESMO link.
+
+ANDROID
+- Abra o link no Chrome.
+- Menu do navegador > Instalar aplicativo / Adicionar à tela inicial.
+
+WINDOWS
+- Abra o link no Chrome ou Edge.
+- Use a opção Instalar aplicativo na barra/menu do navegador.
+
+LINUX
+- Abra o link em Chrome/Chromium/Edge compatível.
+- Use a opção de instalar o site como aplicativo, quando disponível.
+- Também pode ser usado normalmente no navegador.
+
+OFFLINE
+Após a primeira abertura online, a base e o aplicativo ficam em cache e continuam funcionando sem internet.
+
+ATUALIZAÇÃO
+Há um botão "Verificar atualização do aplicativo".
+Quando uma nova versão for publicada no mesmo endereço, não é necessário reinstalar.
+
+O QUE INFORMAR AO ENCONTRAR UMA FALHA
+- Palavra/código pesquisado.
+- Código da infração escolhido.
+- Fato gerador escolhido.
+- Opções/datas preenchidas.
+- Texto que o app gerou.
+- Texto esperado, se possível.
