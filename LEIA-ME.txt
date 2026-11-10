@@ -10,3 +10,6 @@ ATUALIZAÇÃO NO GITHUB PAGES:
 3. Envie os 10 arquivos diretamente à raiz, não o ZIP nem a pasta.
 4. Commit changes e aguarde a publicação.
 5. Abra o PWA com internet e use Verificar atualização do aplicativo.
+
+
+v0.9.2: CORREÇÃO DA ORDENAÇÃO DA PESQUISA INTERNA DOS FATOS GERADORES E ATUALIZAÇÃO DO CACHE.

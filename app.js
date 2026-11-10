@@ -118,19 +118,23 @@ function fieldHtml(k,t,v,st){
 
 
 function pontuacaoFato(r,q){
-  if(!q.trim()) return 0;
-  return score([r.codigoFatoGerador,r.descricaoFatoGerador,r.casoEspecifico,r.observacaoBase].join(" "),q);
+  const termo=norm(q);
+  if(!termo)return 0;
+  const codigo=norm(r.codigoFatoGerador);
+  const descricao=norm([r.casoEspecifico,r.descricaoFatoGerador].join(" "));
+  const observacao=norm(r.observacaoBase);
+  if(codigo===termo)return 1000;
+  if(codigo.startsWith(termo))return 800;
+  if(descricao.includes(termo))return 500;
+  if(observacao.includes(termo))return 300;
+  const s=score([r.codigoFatoGerador,r.casoEspecifico,r.descricaoFatoGerador,r.observacaoBase].join(" "),q);
+  return s>=0?100+s:-1;
 }
 function renderFatos(){
   const q=$("qFato").value.trim();
   const fs=BASE.filter(r=>r.codigoInfracao===codigoAtivo)
     .map((r,i)=>({r,i,p:pontuacaoFato(r,q)}))
-    .sort((a,b)=>{
-      const am=a.p>=0,bm=b.p>=0;
-      if(am!==bm)return am?-1:1;
-      if(am&&bm&&a.p!==b.p)return b.p-a.p;
-      return a.i-b.i;
-    });
+    .sort((a,b)=>((b.p>=0)-(a.p>=0))||(a.p>=0?b.p-a.p:0)||(a.i-b.i));
   $("fatosCodigo").innerHTML=fs.map(({r,p})=>{
     const sel=selecionados.has(r.codigoFatoGerador),rel=!!q&&p>=0;
     return `<div class="fato ${sel?"selecionado":""} ${rel?"relevante":""}"><div class="factHead"><div><b>${esc(r.codigoFatoGerador)}</b> — ${esc(r.casoEspecifico)} ${rel?'<span class="relTag">RELACIONADO À PESQUISA</span>':""}</div><button class="${sel?"light":""}" onclick="toggleFato('${js(r.codigoFatoGerador)}')">${sel?"Remover":"Selecionar"}</button></div><div class="meta">${esc(r.descricaoFatoGerador)}</div>${sel?specHtml(r):""}</div>`;
@@ -437,7 +441,7 @@ init();
       }else if(reg.installing && reg.installing!==before){
         box.textContent="NOVA VERSÃO ENCONTRADA. AGUARDE A INSTALAÇÃO.";
       }else{
-        box.textContent="APP ATUALIZADO. VERSÃO 0.8.1 BETA.";
+        box.textContent="APP ATUALIZADO. VERSÃO 0.9.2 BETA.";
       }
     }catch(e){
       box.textContent="NÃO FOI POSSÍVEL VERIFICAR AGORA. TENTE NOVAMENTE MAIS TARDE.";

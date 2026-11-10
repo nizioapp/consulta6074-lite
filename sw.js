@@ -1,5 +1,5 @@
-const C='consulta6074-lite-beta-v091';
-const A=['./','index.html','style.css','app.js','manifest.json','infracoes_6074.json','icon-192.png','icon-512.png'];
+const C='consulta6074-lite-beta-v092';
+const A=['./','index.html','style.css','app.js?v=092','manifest.json','infracoes_6074.json','icon-192.png','icon-512.png'];
 
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(C).then(c=>c.addAll(A)).then(()=>self.skipWaiting()));
