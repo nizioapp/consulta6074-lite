@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b3d2e">
-<title>Consulta 6074 Lite v0.8.1 BETA</title>
+<title>Consulta 6074 Lite v0.9.1 BETA</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="stylesheet" href="style.css">
@@ -12,7 +12,7 @@
 <body>
 <header>
   <div><h1>Consulta 6074 Lite</h1><p>Consulta rápida de infrações e fatos geradores</p></div>
-  <span class="badge">v0.8.1 BETA • nova tabela</span>
+  <span class="badge">v0.9.1 BETA • nova tabela</span>
 </header>
 
 <main>
@@ -36,6 +36,11 @@
     <button id="limparSelecao" class="light">Limpar fatos selecionados</button>
   </div>
   <h3>Fatos geradores</h3>
+  <div class="fieldBox">
+    <label for="qFato">Procurar fato gerador deste código</label>
+    <input id="qFato" type="search" autocomplete="off" placeholder="Ex.: LACRE, PRESSÃO, VENCIMENTO">
+    <div class="small">Os fatos relacionados aparecem primeiro. Os demais permanecem disponíveis.</div>
+  </div>
   <div id="fatosCodigo"></div>
 </section>
 
@@ -79,7 +84,7 @@
   <div class="buttons"><button id="cancelarTroca" class="light">Cancelar</button><button id="confirmarTroca">Descartar e continuar</button></div>
 </dialog>
 
-<footer>Consulta 6074 Lite • v0.8.1 BETA • funcionamento offline</footer>
+<footer>Consulta 6074 Lite • v0.9.1 BETA • funcionamento offline</footer>
 <script src="app.js"></script>
 </body>
 </html>

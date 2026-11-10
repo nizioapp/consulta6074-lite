@@ -24,3 +24,7 @@ footer{text-align:center;padding:15px;font-size:.73rem;color:#68766e}
 }
 
 .betaBox{border-style:dashed}
+
+.fato.relevante{border-color:#3b8b70;background:#f0f8f4}
+.relTag{display:inline-block;margin-left:6px;font-size:.68rem;font-weight:700;background:#dcefe7;color:#245846;border-radius:999px;padding:3px 7px}
+#qFato{width:100%;margin-top:6px}

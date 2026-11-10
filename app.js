@@ -1,5 +1,5 @@
 
-let BASE_ORIGINAL=[],BASE=[],codigoAtivo=null,selecionados=new Map(),estado={},sugestaoGerada="",codigoPendente=null;
+let BASE_ORIGINAL=[],BASE=[],codigoAtivo=null,selecionados=new Map(),estado={},sugestaoGerada="",codigoPendente=null,pesquisaOrigem="";
 const $=id=>document.getElementById(id);
 
 function norm(s){return String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[-_/.,;:()[\]{}]/g," ").replace(/\s+/g," ").trim()}
@@ -37,8 +37,10 @@ function renderBusca(){
   }).join(""):"<p>Nenhum código encontrado.</p>";
 }
 $("q").oninput=renderBusca;
+$("qFato").addEventListener("input",()=>{syncEstadoFromDOM();renderFatos()});
 
 window.pedirCodigo=function(c){
+  pesquisaOrigem=$("q").value.trim();
   if(codigoAtivo&&codigoAtivo!==c&&selecionados.size){
     codigoPendente=c;$("textoTroca").textContent=`Deseja descartar os fatos geradores selecionados do código ${codigoAtivo} e selecionar o código ${c}?`;$("trocaCodigo").showModal();return;
   }ativarCodigo(c);
@@ -50,6 +52,7 @@ function ativarCodigo(c){
   codigoAtivo=c;const fs=BASE.filter(r=>r.codigoInfracao===c);
   $("codigoAtivo").textContent=c;$("descricaoCodigo").textContent=fs[0]?.descricaoInfracao||"";
   const meds=[...new Set(fs.flatMap(f=>f.medidas||[]))];$("medidasCodigo").innerHTML=meds.map(m=>`<span class="tag">${esc(m)}</span>`).join("");
+  $("qFato").value=pesquisaOrigem;
   $("codigoAtivoCard").classList.remove("hidden");renderFatos();$("codigoAtivoCard").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
@@ -114,14 +117,27 @@ function fieldHtml(k,t,v,st){
 }
 
 
+function pontuacaoFato(r,q){
+  if(!q.trim()) return 0;
+  return score([r.codigoFatoGerador,r.descricaoFatoGerador,r.casoEspecifico,r.observacaoBase].join(" "),q);
+}
 function renderFatos(){
-  const fs=BASE.filter(r=>r.codigoInfracao===codigoAtivo);
-  $("fatosCodigo").innerHTML=fs.map(r=>{
-    const sel=selecionados.has(r.codigoFatoGerador);
-    return `<div class="fato ${sel?"selecionado":""}"><div class="factHead"><div><b>${esc(r.codigoFatoGerador)}</b> — ${esc(r.casoEspecifico)}</div><button class="${sel?"light":""}" onclick="toggleFato('${js(r.codigoFatoGerador)}')">${sel?"Remover":"Selecionar"}</button></div><div class="meta">${esc(r.descricaoFatoGerador)}</div>${sel?specHtml(r):""}</div>`;
+  const q=$("qFato").value.trim();
+  const fs=BASE.filter(r=>r.codigoInfracao===codigoAtivo)
+    .map((r,i)=>({r,i,p:pontuacaoFato(r,q)}))
+    .sort((a,b)=>{
+      const am=a.p>=0,bm=b.p>=0;
+      if(am!==bm)return am?-1:1;
+      if(am&&bm&&a.p!==b.p)return b.p-a.p;
+      return a.i-b.i;
+    });
+  $("fatosCodigo").innerHTML=fs.map(({r,p})=>{
+    const sel=selecionados.has(r.codigoFatoGerador),rel=!!q&&p>=0;
+    return `<div class="fato ${sel?"selecionado":""} ${rel?"relevante":""}"><div class="factHead"><div><b>${esc(r.codigoFatoGerador)}</b> — ${esc(r.casoEspecifico)} ${rel?'<span class="relTag">RELACIONADO À PESQUISA</span>':""}</div><button class="${sel?"light":""}" onclick="toggleFato('${js(r.codigoFatoGerador)}')">${sel?"Remover":"Selecionar"}</button></div><div class="meta">${esc(r.descricaoFatoGerador)}</div>${sel?specHtml(r):""}</div>`;
   }).join("");
 }
-window.toggleFato=function(k){const r=BASE.find(x=>x.codigoFatoGerador===k);if(!r)return;if(selecionados.has(k))selecionados.delete(k);else{selecionados.set(k,r);state(k)}renderFatos();$("observacaoCard").classList.toggle("hidden",!selecionados.size)};
+
+window.toggleFato=function(k){syncEstadoFromDOM();const r=BASE.find(x=>x.codigoFatoGerador===k);if(!r)return;if(selecionados.has(k))selecionados.delete(k);else{selecionados.set(k,r);state(k)}renderFatos();$("observacaoCard").classList.toggle("hidden",!selecionados.size)};
 function syncEstadoFromDOM(){
   document.querySelectorAll("#fatosCodigo .js-token").forEach(el=>{
     const k=decData(el.dataset.k),t=decData(el.dataset.token),st=state(k);
@@ -238,7 +254,7 @@ $("limparSelecao").onclick=()=>limparSelecionados();
 $("novaPesquisaLimpar").onclick=()=>{
   const tem=$("q").value.trim()||codigoAtivo||selecionados.size||$("obs").value.trim();
   if(tem&&!confirm("Deseja iniciar uma nova pesquisa? A busca, o código ativo, os fatos selecionados, as circunstâncias preenchidas e a observação serão apagados."))return;
-  $("q").value="";$("resultadosCodigos").innerHTML="";codigoAtivo=null;codigoPendente=null;selecionados.clear();estado={};sugestaoGerada="";$("obs").value="";$("codigoAtivoCard").classList.add("hidden");$("observacaoCard").classList.add("hidden");$("q").focus();window.scrollTo({top:0,behavior:"smooth"});
+  $("q").value="";$("qFato").value="";pesquisaOrigem="";$("resultadosCodigos").innerHTML="";codigoAtivo=null;codigoPendente=null;selecionados.clear();estado={};sugestaoGerada="";$("obs").value="";$("codigoAtivoCard").classList.add("hidden");$("observacaoCard").classList.add("hidden");$("q").focus();window.scrollTo({top:0,behavior:"smooth"});
 };
 
 function validarBase(a){return Array.isArray(a)&&a.length&&a.every(r=>r.codigoInfracao&&r.codigoFatoGerador)}

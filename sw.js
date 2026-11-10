@@ -1,4 +1,4 @@
-const C='consulta6074-lite-beta-v081';
+const C='consulta6074-lite-beta-v091';
 const A=['./','index.html','style.css','app.js','manifest.json','infracoes_6074.json','icon-192.png','icon-512.png'];
 
 self.addEventListener('install',e=>{

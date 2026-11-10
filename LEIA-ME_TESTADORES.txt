@@ -33,3 +33,6 @@ O QUE INFORMAR AO ENCONTRAR UMA FALHA
 - Opções/datas preenchidas.
 - Texto que o app gerou.
 - Texto esperado, se possível.
+
+
+NOVIDADE v0.9.1: dentro de um código, use Procurar fato gerador para priorizar situações específicas.

@@ -1,13 +1,12 @@
-CONSULTA 6074 LITE — v0.8
+CONSULTA 6074 LITE — v0.9.1 BETA
 
-Alterações nos fatos 999:
-- 999.3: ORIGEM, DESTINO, Nº DE PASSAGEIROS PAGANTES e VALOR agora são campos de dados, não circunstâncias.
-- 999.1 e 999.2 também receberam formulários próprios para os dados que alimentam a observação.
-- Nova redação padrão:
-  "SEM AUTORIZAÇÃO OU PERMISSÃO DA ANTT PARA COMERCIALIZAR OU PRESTAR ESSE TIPO DE SERVIÇO."
-- A observação do 999.3 foi reescrita para "TRANSPORTE REMUNERADO INTERESTADUAL..." e usa os dados preenchidos.
-- Mantida caixa alta.
+Baseada na v0.8.1 BETA CORRIGIDA.
 
-Teste:
-python -m http.server 8107
-Abra http://localhost:8107
+NOVIDADE: ao selecionar um código, o campo Procurar fato gerador é preenchido com a pesquisa principal, mas pode ser editado independentemente. Fatos relacionados são priorizados e destacados; os demais permanecem visíveis. Limpar o campo restaura a ordem original.
+
+ATUALIZAÇÃO NO GITHUB PAGES:
+1. Descompacte este ZIP.
+2. No repositório nizioapp/consulta6074-lite, use Add file > Upload files.
+3. Envie os 10 arquivos diretamente à raiz, não o ZIP nem a pasta.
+4. Commit changes e aguarde a publicação.
+5. Abra o PWA com internet e use Verificar atualização do aplicativo.
